@@ -16,7 +16,15 @@ Replace `SPOTIFY_USER_ID` with the target user's Spotify ID.
 
 Returns a JSON-formatted string in the following format:
 
-`[{"name": "follower_name", "id": "card-title-spotify:user:follower_userid"}, ...]`
+```
+[
+   {
+      "name": "follower_name",
+      "id": "card-title-spotify:user:follower_userid"
+   },
+   ...
+]
+```
 
 ## Spotify User ID
 
