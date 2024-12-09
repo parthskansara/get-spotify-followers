@@ -14,7 +14,7 @@ Replace `SPOTIFY_USER_ID` with the target user's Spotify ID.
 
 ## Spotify User ID
 
-The Spotify user ID is a unique string identifier for a Spotify user. It can be found at the end of the Spotify URI for the user. For example, in the URI spotify:user:wizzler, the user ID would be wizzler.
+The Spotify user ID is a unique string identifier for a Spotify user. It can be found at the end of the Spotify URI for the user. For example, in the URI `spotify:user:wizzler`, the user ID would be wizzler.
 
 To obtain a user's Spotify ID:
 1. Open the Spotify desktop client
