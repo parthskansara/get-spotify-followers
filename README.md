@@ -12,6 +12,12 @@ python scraper.py SPOTIFY_USER_ID
 
 Replace `SPOTIFY_USER_ID` with the target user's Spotify ID.
 
+## Output Format
+
+Returns a JSON-formatted string in the following format:
+
+`[{"name": "follower_name", "id": "card-title-spotify:user:follower_userid"}, ...]`
+
 ## Spotify User ID
 
 The Spotify user ID is a unique string identifier for a Spotify user. It can be found at the end of the Spotify URI for the user. For example, in the URI `spotify:user:wizzler`, the user ID would be wizzler.
