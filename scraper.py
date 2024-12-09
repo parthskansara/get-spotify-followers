@@ -21,47 +21,15 @@ def parse_id (id_string):
 
     return "".join(curr_id)
 
-def find_follower_names (html_content):
-
-    # Assuming you have your HTML content stored in a variable called html_content
-    soup = BeautifulSoup(html_content, 'html.parser')
-
-    # Find all 'p' tags with id starting with 'card-title-spotify:user'
-    matches = soup.find_all('p', id=lambda x: x and x.startswith('card-title-spotify:user'))
-
-    # Extract the 'title' attribute values
-    titles = [tag['title'] for tag in matches]
-    ids = [tag['id'] for tag in matches]
-
-    # follower_ids = []
-
-    # for id in ids:
-    #     i = 24
-    #     curr_id = []
-    #     while id[i] != "-":
-    #         curr_id += id[i]
-
-    #     follower_ids.append("".join(curr_id))
-
-    # return [{"name": title, "user_id": id} for title, id in zip(titles, follower_ids)]
-    return (titles, ids)
-    # return ids
-
-    # Print the result
-    # print(titles)
-
 def scrape_page(user_id, timeout=20):
 
     url = f"https://open.spotify.com/user/{user_id}/followers"
 
     options = Options()
-    # options.add_argument("--log-level=1")
+    options.add_argument("--log-level=1")
 
-    # Initialize the WebDriver (Chrome in this example)
     driver = webdriver.Chrome(options=options)
     follower_ids = set()
-
-    # onClickHintspotify:user:31xwvodtpeq3r2fidf2q5dyzghla-1
 
     try:
         # Set page load timeout
@@ -81,23 +49,6 @@ def scrape_page(user_id, timeout=20):
         # Get the page source (HTML)
         html_content = driver.page_source
 
-        # # using re.finditer() to find all occurrences of substring in string 
-        # occurrences = re.finditer("onClickHintspotify:user:", html_content) 
-
-        # # using reduce() to get start indices of all occurrences 
-        # res = reduce(lambda x, y: x + [y.start()], occurrences, []) 
-
-        # for start_index in res:
-        #     curr_id = []
-        #     i = start_index+24
-        #     while html_content[i] != "-":
-        #         curr_id.append(html_content[i])
-        #         i += 1
-        #     follower_ids.add("".join(curr_id))
-
-        
-
-        # Assuming you have your HTML content stored in a variable called html_content
         soup = BeautifulSoup(html_content, 'html.parser')
 
         # Find all 'p' tags with id starting with 'card-title-spotify:user'
@@ -107,17 +58,6 @@ def scrape_page(user_id, timeout=20):
         titles = [tag['title'] for tag in matches]
         ids = [tag['id'] for tag in matches]
 
-        # follower_ids = []
-
-        # for id in ids:
-        #     i = 24
-        #     curr_id = []
-        #     while id[i] != "-":
-        #         curr_id += id[i]
-
-        #     follower_ids.append("".join(curr_id))
-
-        # json_array = [title + "#$" + id for title, id in zip(titles, follower_ids)]
         json_array = [{"name": title, "id": id} for title, id in zip(titles, ids)]
         return json.dumps(json_array if json_array else [])
     
