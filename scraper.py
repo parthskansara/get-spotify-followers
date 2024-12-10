@@ -14,12 +14,7 @@ from functools import reduce
 from bs4 import BeautifulSoup
 
 def parse_id (id_string):
-    i = 24
-    curr_id = []
-    while id_string[i] != "-":
-        curr_id += id_string[i]
-
-    return "".join(curr_id)
+    return id_string.split(":")[2]
 
 def scrape_page(user_id, timeout=20):
 
