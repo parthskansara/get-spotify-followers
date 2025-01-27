@@ -14,7 +14,7 @@ from functools import reduce
 from bs4 import BeautifulSoup
 
 def parse_id (id_string):
-    return id_string.split(":")[2]
+    return id_string.split(":")[2].split("-")[0]
 
 def scrape_page(user_id, timeout=20):
 
